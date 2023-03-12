@@ -1,0 +1,19 @@
+Etape 1 : Détermination de l’alphabet et des fréquences de caractères
+L’alphabet sera composé des caractères présents dans le texte fourni et uniquement de ceux-ci. La fréquence des différents caractères de l’alphabet dans le texte sera déterminée. Le terme fréquence est ici, et dans toute la suite, utilisé pour une fréquence absolue, c’est-à-dire un nombre d’occurrences des caractères dans le texte. L’ordre des caractères de l’alphabet sera maintenu par fréquence croissante puis par ordre de codage des caractères ASCII.
+Etape 2 : Construction de l’arbre
+L’algorithme est décrit dans l’article de son créateur publié en 1952. Il repose sur une structure d’arbre binaire où tous les nœuds internes ont exactement deux successeurs. Les feuilles sont étiquetées avec les caractères de l’alphabet, les branches par 0 (fils gauche) et 1 (fils droit). Les chemins depuis la racine jusqu’aux feuilles constituent les codes des caractères.
+La construction de l’arbre est réalisée de la manière suivante :
+Créer un arbre (feuille) pour chaque caractère de l’alphabet avec la fréquence associée
+Répéter
+Déterminer les 2 arbres t1 et t2 de fréquence minimale avec t1.freq  t2.freq
+Créer un nouvel arbre t avec t1 et t2 comme sous-arbres respectivement gauche et droite
+avec t.freq = t1.freq  t2.freq Jusqu’à ce qu’il ne reste plus qu’un seul arbre
+Etape 3 : Codage du texte
+Le code de chaque caractère est obtenu par un parcours en profondeur de l’arbre.
+Chaque caractère du texte est alors codé par une succession de bits et le codage du texte est obtenu par concaténation des codes de chacun de ses caractères. Il sera stocké octet par octet dans le texte compressé.
+Etape 4 : Détermination du taux de compression
+Le taux de compression constitue une mesure de performance de votre algorithme relativement au texte à compresser. Il est défini comme le gain en volume rapporté au volume initial des données,
+c’est-à-dire :
+Taux de compression = Gain en volume / Volume initial = 1 – Volume final / Volume initial
+Les volumes sont évalués en nombre d’octets.
+Etape 5 : Détermination du nombre moyen de bits de stockage d’un caractère du texte compressé
